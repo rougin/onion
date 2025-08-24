@@ -66,7 +66,7 @@ use Rougin\Onion\CorsHeader;
 
 $app = new Application;
 
-// Can allow specified origins and methods ---
+// Allows specified origins and methods ------
 $origins = array('https://example.com');
 $origins[] = 'https://api.example.com';
 
