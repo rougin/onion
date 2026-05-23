@@ -157,7 +157,9 @@ class NullStringTest extends Testcase
 
         $stubRequest = $handler->request();
 
-        $this->assertNull($stubRequest->getQueryParams()['q']);
+        $params = $stubRequest->getQueryParams();
+
+        $this->assertNull($params['q']);
 
         /** @var array<string, mixed> */
         $parsed = $stubRequest->getParsedBody();
