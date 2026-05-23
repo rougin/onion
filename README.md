@@ -8,6 +8,20 @@
 
 A collection of [Slytherin](https://github.com/rougin/slytherin)-based HTTP middlewares.
 
+``` php
+use Rougin\Slytherin\Application;
+
+$app = new Application;
+
+$app->add(new Rougin\Onion\BodyParams);
+$app->add(new Rougin\Onion\CorsHeader);
+$app->add(new Rougin\Onion\FormParser);
+$app->add(new Rougin\Onion\JsonHeader);
+$app->add(new Rougin\Onion\NullString);
+
+$app->run();
+```
+
 ## Installation
 
 Install the package using [Composer](https://getcomposer.org/):
