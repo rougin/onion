@@ -21,14 +21,18 @@ class Transform implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, HandlerInterface $handler)
     {
+        /** @var array<string, string> $params */
         $params = $request->getQueryParams();
 
+        /** @var array<string, mixed> */
         $get = $this->map($params);
 
         $request = $request->withQueryParams($get);
 
+        /** @var array<string, mixed>|object|null */
         $post = $request->getParsedBody();
 
+        /** @var array<string, mixed> */
         $parsed = is_array($post) ? $post : array();
 
         $post = $this->map($parsed);
@@ -53,6 +57,7 @@ class Transform implements MiddlewareInterface
 
             if (is_array($value))
             {
+                /** @var array<string, mixed> $value */
                 $new = $this->map($value);
             }
 
@@ -68,6 +73,8 @@ class Transform implements MiddlewareInterface
      * @param mixed $value
      *
      * @return mixed
+     *
+     * @codeCoverageIgnore
      */
     protected function transform($value)
     {
