@@ -57,9 +57,9 @@ class BodyParams implements MiddlewareInterface
     }
 
     /**
-     * https://stackoverflow.com/a/38624774
-     *
      * @param string $input
+     *
+     * @link https://stackoverflow.com/a/38624774
      *
      * @return array<mixed, mixed>
      */
