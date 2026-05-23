@@ -1,5 +1,11 @@
 # Onion
 
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]][link-license]
+[![Build Status][ico-build]][link-build]
+[![Coverage Status][ico-coverage]][link-coverage]
+[![Total Downloads][ico-downloads]][link-downloads]
+
 A collection of [Slytherin](https://github.com/rougin/slytherin)-based HTTP middlewares.
 
 ## Installation
@@ -156,32 +162,26 @@ $app->run();
 
 ## Change log
 
-See [CHANGELOG](CHANGELOG.md) for more recent changes.
+See [CHANGELOG][link-changelog] for more recent changes.
 
-## Development
+## Contributing
 
-Includes tools for code quality, coding style, and unit tests.
+See [CONTRIBUTING][link-contributing] on how to contribute.
 
-### Code quality
+## License
 
-Analyze code quality using [phpstan](https://phpstan.org/):
+The MIT License (MIT). Please see [LICENSE][link-license] for more information.
 
-``` bash
-$ phpstan
-```
+[ico-build]: https://img.shields.io/github/actions/workflow/status/rougin/onion/build.yml?style=flat-square
+[ico-coverage]: https://img.shields.io/codecov/c/github/rougin/onion?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/rougin/onion.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/rougin/onion.svg?style=flat-square
 
-### Coding style
-
-Enforce coding style using [php-cs-fixer](https://cs.symfony.com/):
-
-``` bash
-$ php-cs-fixer fix --config=phpstyle.php
-```
-
-### Unit tests
-
-Execute unit tests using [phpunit](https://phpunit.de/index.html):
-
-``` bash
-$ composer test
-```
+[link-build]: https://github.com/rougin/onion/actions
+[link-changelog]: https://github.com/rougin/onion/CHANGELOG.md
+[link-contributing]: https://github.com/rougin/onion/CONTRIBUTING.md
+[link-coverage]: https://app.codecov.io/gh/rougin/onion
+[link-downloads]: https://packagist.org/packages/rougin/onion
+[link-license]: https://github.com/rougin/onion/blob/master/LICENSE.md
+[link-packagist]: https://packagist.org/packages/rougin/onion
