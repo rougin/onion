@@ -179,8 +179,8 @@ The MIT License (MIT). Please see [LICENSE][link-license] for more information.
 [ico-version]: https://img.shields.io/packagist/v/rougin/onion.svg?style=flat-square
 
 [link-build]: https://github.com/rougin/onion/actions
-[link-changelog]: https://github.com/rougin/onion/CHANGELOG.md
-[link-contributing]: https://github.com/rougin/onion/CONTRIBUTING.md
+[link-changelog]: https://github.com/rougin/onion/blob/master/CHANGELOG.md
+[link-contributing]: https://github.com/rougin/onion/blob/master/CONTRIBUTING.md
 [link-coverage]: https://app.codecov.io/gh/rougin/onion
 [link-downloads]: https://packagist.org/packages/rougin/onion
 [link-license]: https://github.com/rougin/onion/blob/master/LICENSE.md
