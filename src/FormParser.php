@@ -47,7 +47,7 @@ class FormParser implements MiddlewareInterface
 
         $post = array_merge($post, $data);
 
-        $request->withParsedBody($post);
+        $request = $request->withParsedBody($post);
 
         return $handler->handle($request);
     }
