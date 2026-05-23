@@ -65,18 +65,25 @@ class BodyParams implements MiddlewareInterface
      */
     protected function parse($input)
     {
-        $endOfFirstLine = (int) strpos($input, "\r\n");
+        /** @var array<string, mixed> */
+        $return = array();
 
+        $endOfFirstLine = strpos($input, "\r\n");
+
+        if ($endOfFirstLine < 1)
+        {
+            return $return;
+        }
+
+        /** @var non-empty-string */
         $boundary = substr($input, 0, $endOfFirstLine);
 
         // Split form-data into each entry ---
-        /** @var string[] */
+        /** @var non-empty-string[] */
         $parts = explode($boundary, $input);
         // -----------------------------------
 
-        /** @var array<string, string> */
-        $return = array();
-
+        /** @var array<string, mixed> */
         $header = array();
 
         // Remove first and last (null) entries ---
@@ -95,17 +102,20 @@ class BodyParams implements MiddlewareInterface
 
             $body = substr($part, $startOfBody, -2);
 
-            /** @var string[] */
-            $headerParts = preg_split('#; |\r\n#', $head);
+            $result = preg_split('#; |\r\n#', $head);
+
+            $headerParts = $result === false ? array() : $result;
 
             $key = '';
 
             $thisHeader = array();
 
-            // Parse the mini headers, obtain the key ---------------------
+            // Parse the mini headers, obtain the key ------------------
+            $search = '#(.*)(=|: )(.*)#';
+
             foreach ($headerParts as $headerPart)
             {
-                if (! preg_match('#(.*)(=|: )(.*)#', $headerPart, $keyVal))
+                if (! preg_match($search, $headerPart, $keyVal))
                 {
                     continue;
                 }
@@ -126,7 +136,7 @@ class BodyParams implements MiddlewareInterface
 
                 $thisHeader[$keyVal[1]] = $keyVal[3];
             }
-            // ------------------------------------------------------------
+            // ---------------------------------------------------------
 
             if ($key === '')
             {
@@ -135,42 +145,10 @@ class BodyParams implements MiddlewareInterface
 
             // If the key is multidimensional, generate --------
             // multidimentional array based off of the parts ---
-            /** @var string[] */
-            $nameParts = preg_split('#(?=\[.*\])#', $key);
+            $result = preg_split('#(?=\[.*\])#', $key);
+
+            $nameParts = $result === false ? array() : $result;
             // -------------------------------------------------
-
-            if (count($nameParts) < 1)
-            {
-                $return[$key] = $body;
-
-                if (! isset($thisHeader['filename']))
-                {
-                    $header[$key] = $thisHeader;
-
-                    continue;
-                }
-
-                /** @var string */
-                $filename = tempnam(sys_get_temp_dir(), 'php');
-
-                file_put_contents($filename, $body);
-
-                $item = array('error' => 0);
-
-                $item['name'] = $thisHeader['filename'];
-
-                $item['type'] = $thisHeader['Content-Type'];
-
-                $item['tmp_name'] = $filename;
-
-                $item['size'] = filesize($body);
-
-                $return[$key] = $item;
-
-                $header[$key] = $thisHeader;
-
-                continue;
-            }
 
             $current = &$return;
 
@@ -180,10 +158,12 @@ class BodyParams implements MiddlewareInterface
 
             for ($i = 0; $i < $l; $i++)
             {
-                // Strip the array access tokens ------------------------
+                // Strip the array access tokens ---------------------
+                $search = '#[\[\]]#';
+
                 /** @var string */
-                $namePart = preg_replace('#[\[\]]#', '', $nameParts[$i]);
-                // ------------------------------------------------------
+                $namePart = preg_replace($search, '', $nameParts[$i]);
+                // ---------------------------------------------------
 
                 // Add data to array if at the end of the depth of this entry ---
                 if ($i != $l - 1)
@@ -196,10 +176,7 @@ class BodyParams implements MiddlewareInterface
                             $currentHeader[$namePart] = array();
                         }
 
-                        if (is_array($current))
-                        {
-                            $current[$namePart] = array();
-                        }
+                        $current[$namePart] = array();
                     }
                     // ----------------------------------------------------
 
@@ -226,7 +203,7 @@ class BodyParams implements MiddlewareInterface
                 {
                     $temp = sys_get_temp_dir();
 
-                    /** @var string */
+                    /** @var non-falsy-string */
                     $filename = tempnam($temp, 'php');
 
                     file_put_contents($filename, $body);
@@ -239,7 +216,7 @@ class BodyParams implements MiddlewareInterface
 
                     $file['tmp_name'] = $filename;
 
-                    $file['size'] = filesize($body);
+                    $file['size'] = strlen($body);
 
                     if (is_array($current))
                     {
@@ -254,6 +231,6 @@ class BodyParams implements MiddlewareInterface
             }
         }
 
-        return $return;
+        return is_array($return) ? $return : array();
     }
 }
