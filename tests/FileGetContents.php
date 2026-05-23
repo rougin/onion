@@ -8,6 +8,8 @@ namespace Rougin\Onion;
  * @param string $filename
  *
  * @return string
+ *
+ * @codeCoverageIgnore
  */
 function file_get_contents($filename)
 {
