@@ -18,6 +18,8 @@ $app->add(new Rougin\Onion\CorsHeader);
 $app->add(new Rougin\Onion\FormParser);
 $app->add(new Rougin\Onion\JsonHeader);
 $app->add(new Rougin\Onion\NullString);
+$app->add(new Rougin\Onion\SpoofMethod);
+$app->add(new Rougin\Onion\TrimString);
 
 $app->run();
 ```
@@ -167,6 +169,59 @@ $app->post('/articles', function ($request, $response)
     // Will be "null" if the input is an empty ---
     $author = $data['author'];
     // -------------------------------------------
+
+    return $response;
+});
+
+$app->run();
+```
+
+### `Rougin\Onion\SpoofMethod`
+
+This middleware allows overriding the HTTP method via a configurable key in the request body. By default, it reads the `_method` key to emulate `PUT`, `PATCH`, or `DELETE` requests from HTML forms, which only natively support `GET` and `POST`:
+
+``` php
+// index.php
+
+use Rougin\Slytherin\Application;
+use Rougin\Onion\SpoofMethod;
+
+$app = new Application;
+
+// Uses the default "_method" key ---
+$app->add(new SpoofMethod);
+// ----------------------------------
+
+// Or specify a custom key ------
+$key = '_http_method';
+
+$app->add(new SpoofMethod($key));
+// ------------------------------
+
+$app->run();
+```
+
+### `Rougin\Onion\TrimString`
+
+This middleware trims whitespace from all string values in the request body and query parameters, including nested arrays:
+
+``` php
+// index.php
+
+use Rougin\Slytherin\Application;
+use Rougin\Onion\TrimString;
+
+$app = new Application;
+
+$app->add(new TrimString);
+
+$app->post('/profile', function ($request, $response)
+{
+    $data = $request->getParsedBody();
+
+    // "  John  " will be trimmed to "John" ---
+    $name = $data['name'];
+    // ----------------------------------------
 
     return $response;
 });
