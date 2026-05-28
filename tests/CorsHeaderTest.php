@@ -21,7 +21,7 @@ class CorsHeaderTest extends Testcase
 
         $middleware->allowed(array('https://api.example.com'));
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $request = $this->createRequest('GET');
 
@@ -35,9 +35,9 @@ class CorsHeaderTest extends Testcase
      */
     public function test_passed_if_custom_methods_set()
     {
-        $middleware = new CorsHeader(null, array('GET', 'POST'));
+        $middleware = new CorsHeader(array(), array('GET', 'POST'));
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $request = $this->createRequest('GET');
 
@@ -53,7 +53,7 @@ class CorsHeaderTest extends Testcase
     {
         $middleware = new CorsHeader(array('https://example.com'));
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $request = $this->createRequest('GET');
 
@@ -69,7 +69,7 @@ class CorsHeaderTest extends Testcase
     {
         $middleware = new CorsHeader;
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $request = $this->createRequest('GET');
 
@@ -96,7 +96,7 @@ class CorsHeaderTest extends Testcase
     {
         $middleware = new CorsHeader;
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $request = $this->createRequest('GET');
 
@@ -114,7 +114,7 @@ class CorsHeaderTest extends Testcase
 
         $middleware->methods(array('GET'));
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $request = $this->createRequest('GET');
 

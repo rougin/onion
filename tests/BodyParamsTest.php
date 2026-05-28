@@ -3,6 +3,7 @@
 namespace Rougin\Onion;
 
 use Rougin\Onion\Fixture\HandlerStub;
+use Rougin\Slytherin\Http\Response;
 
 /**
  * @package Onion
@@ -25,7 +26,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT', array(), array('name' => 'John'));
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -46,7 +47,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('DELETE');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -67,7 +68,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('DELETE', array(), array('existing' => 'data'));
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -86,7 +87,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('GET', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -104,7 +105,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT', array(), array('name' => 'John'));
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -123,7 +124,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -156,7 +157,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -200,7 +201,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -245,7 +246,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -284,7 +285,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -317,7 +318,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -336,7 +337,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PATCH');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -355,7 +356,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -373,7 +374,7 @@ class BodyParamsTest extends Testcase
 
         $request = $this->createRequest('PUT');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 

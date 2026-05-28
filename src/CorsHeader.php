@@ -31,14 +31,14 @@ class CorsHeader implements MiddlewareInterface
     /**
      * Initializes the middleware instance.
      *
-     * @param string[]|null $allowed
-     * @param string[]|null $methods
+     * @param string[] $allowed
+     * @param string[] $methods
      */
-    public function __construct($allowed = null, $methods = null)
+    public function __construct($allowed = array(), $methods = array())
     {
-        $this->allowed($allowed === null ? array('*') : $allowed);
+        $this->allowed(empty($allowed) ? array('*') : $allowed);
 
-        $this->methods($methods === null ? $this->methods : $methods);
+        $this->methods(empty($methods) ? $this->methods : $methods);
     }
 
     /**

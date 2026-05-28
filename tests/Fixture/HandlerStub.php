@@ -2,8 +2,8 @@
 
 namespace Rougin\Onion\Fixture;
 
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Rougin\Slytherin\Http\Response;
 use Rougin\Slytherin\Middleware\HandlerInterface;
 
 /**
@@ -24,11 +24,11 @@ class HandlerStub implements HandlerInterface
     protected $request;
 
     /**
-     * @param \Psr\Http\Message\ResponseInterface|null $response
+     * @param \Psr\Http\Message\ResponseInterface $response
      */
-    public function __construct($response = null)
+    public function __construct(ResponseInterface $response)
     {
-        $this->response = $response === null ? new Response : $response;
+        $this->response = $response;
     }
 
     /**

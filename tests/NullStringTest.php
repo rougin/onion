@@ -3,6 +3,7 @@
 namespace Rougin\Onion;
 
 use Rougin\Onion\Fixture\HandlerStub;
+use Rougin\Slytherin\Http\Response;
 
 /**
  * @package Onion
@@ -25,7 +26,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -44,7 +45,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -63,7 +64,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -89,7 +90,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -111,7 +112,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -130,7 +131,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -151,7 +152,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('POST', $query, $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -176,7 +177,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('GET', $query);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -194,7 +195,7 @@ class NullStringTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 

@@ -3,6 +3,7 @@
 namespace Rougin\Onion;
 
 use Rougin\Onion\Fixture\HandlerStub;
+use Rougin\Slytherin\Http\Response;
 
 /**
  * @package Onion
@@ -25,7 +26,7 @@ class FormParserTest extends Testcase
 
         $request = $this->createRequest('POST');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -48,7 +49,7 @@ class FormParserTest extends Testcase
 
         $request = $this->createRequest('POST', array(), $data);
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -67,7 +68,7 @@ class FormParserTest extends Testcase
 
         $request = $this->createRequest('POST', array(), array('name' => 'John'));
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -88,7 +89,7 @@ class FormParserTest extends Testcase
 
         $request = $this->createRequest('POST');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -109,7 +110,7 @@ class FormParserTest extends Testcase
 
         $request = $this->createRequest('POST');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
@@ -130,7 +131,7 @@ class FormParserTest extends Testcase
 
         $request = $this->createRequest('POST');
 
-        $handler = new HandlerStub;
+        $handler = new HandlerStub(new Response);
 
         $this->self->process($request, $handler);
 
